@@ -74,7 +74,7 @@ if [ ! -d "$PACKAGES_DIR" ]; then
 fi
 
 # List of working folders to watch (relative to $PACKAGES_DIR)
-WORKING_FOLDERS=("client-direct") # Core is handled separately
+WORKING_FOLDERS=("client-direct", "plugin-dev") # Core is handled separately
 
 # Initialize an array to hold package-specific commands
 COMMANDS=()
@@ -123,6 +123,8 @@ if ! pnpm build; then
   echo "Build failed. Exiting."
   exit 1
 fi
+
+echo "Running commands: ${COMMANDS[*]}"
 
 # Run all commands concurrently
 if [ ${#COMMANDS[@]} -gt 0 ]; then

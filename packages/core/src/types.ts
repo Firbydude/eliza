@@ -403,19 +403,26 @@ export interface Action {
     /** Similar action descriptions */
     similes: string[];
 
-    /** Detailed description */
+    /** Detailed description
+    /* This is passed in the context. Assists model in determining action choice. */
     description: string;
 
     /** Example usages */
+    /* This is passed in the context. Assists model in determining action choice.
+     * May include negative examples.
+    */
     examples: ActionExample[][];
 
     /** Handler function */
+    /* Actually perform the action. */
     handler: Handler;
 
     /** Action name */
+    /* This is passed in the context. Assists model in determining action choice. */
     name: string;
 
     /** Validation function */
+    /* Whether the action may be performed at this time. Can reference agent state. */
     validate: Validator;
 }
 
